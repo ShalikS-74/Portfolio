@@ -8,7 +8,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero" role="region" aria-label="Intro">
+    <section className="hero"  aria-label="Intro">
       <div className="hero-inner">
         <h1 className="hero-title">
           Hey, I’m <span>Shalik S</span>.
