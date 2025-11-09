@@ -1,0 +1,5 @@
+.achievements{padding:56px 20px;text-align:center}
+.achievements h2{color:var(--violet);margin-bottom:18px}
+.achievements ul{list-style:none;padding:0;margin:0 auto;max-width:720px}
+.achievements li{margin:12px 0;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);box-shadow:0 8px 28px rgba(3,3,6,0.5);transition:transform .25s ease}
+.achievements li:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(155,107,255,0.08)}

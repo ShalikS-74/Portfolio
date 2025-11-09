@@ -1,0 +1,5 @@
+.footer{text-align:center;padding:28px 12px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.00), rgba(255,255,255,0.01))}
+.footer p{margin:0 0 8px 0;color:var(--muted)}
+.footer .links{display:flex;gap:12px;justify-content:center}
+.footer .links a{padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted);text-decoration:none;font-weight:600}
+.footer .links a:hover{color:var(--text-main);box-shadow:0 10px 30px rgba(155,107,255,0.06)}

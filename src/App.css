@@ -1,0 +1,47 @@
+:root{
+  --bg-deep:#07030a;
+  --magenta:#ff4da6;
+  --violet:#9b6bff;
+  --gold:#ffd27a;
+  --text-main:#eaf6ff;
+  --muted:#c7d2de;
+  --glass:rgba(255,255,255,0.035);
+  --max-width:1100px;
+  --radius:16px;
+}
+
+/* global */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:
+    radial-gradient(900px 420px at 10% 12%, rgba(255,77,166,0.03), transparent),
+    radial-gradient(700px 360px at 90% 88%, rgba(255,178,107,0.02), transparent),
+    var(--bg-deep);
+  color:var(--text-main);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  padding-bottom:64px;
+}
+
+.App { display:flex; flex-direction:column; min-height:100vh; }
+
+.section-inner, .container { max-width:var(--max-width); margin:0 auto; padding:0 20px; }
+
+h1,h2,h3{margin:0 0 12px 0;font-weight:700}
+h2{color:var(--violet)}
+
+.reveal{opacity:0;transform:translateY(8px);animation:fadeUp .72s cubic-bezier(.2,.9,.3,1) both}
+.reveal[style*="--delay"]{animation-delay:var(--delay)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* utility */
+.btn-lift{transition:transform .18s ease, box-shadow .18s ease}
+.btn-lift:hover{transform:translateY(-6px)}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:16px;border:1px solid var(--glass)}
+html, body {
+  overflow-x: hidden;
+}
