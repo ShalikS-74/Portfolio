@@ -1,99 +1,98 @@
-// src/components/Chat/Chat.js
 import React, { useState, useRef, useEffect } from "react";
 import "./Chat.css";
 
-const Chat = () => {
+function Chat() {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "👋 Hey there, I’m SHA-L1K. Ask me about Shalik’s projects, skills, or get his contact info!" },
+    {
+      from: "bot",
+      text: "Hey there! 👋 I’m SHA-L1K — your AI assistant built by Shalik S. Ask me about his projects, skills, or anything tech!"
+    }
   ]);
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
 
- useEffect(() => {
-  if (messages.length > 1) {
+  // 🧠 Auto-scroll when messages update
+  useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }
-}, [messages]);
+  }, [messages]);
 
-
-  // Send message to backend
+  // 📨 Send user message to backend
   const sendMessage = async () => {
-    const trimmed = input.trim();
-    if (!trimmed) return;
+    if (!input.trim()) return;
 
-    const newUserMessage = { sender: "user", text: trimmed };
-    setMessages((prev) => [...prev, newUserMessage]);
+    const userMsg = { from: "user", text: input };
+    setMessages(prev => [...prev, userMsg]);
     setInput("");
-    setIsLoading(true);
+    setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/chat", {
+      // 🔗 Your deployed backend URL on Vercel
+      const res = await fetch("https://portfolio-3lyj.vercel.app/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
+        body: JSON.stringify({ message: input }),
       });
 
       const data = await res.json();
-      const botReply =
-        data?.reply || "⚠️ Hmm… SHA-L1K didn’t quite get that. Try again?";
-      setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+
+      if (res.ok && data.reply) {
+        setMessages(prev => [...prev, { from: "bot", text: data.reply }]);
+      } else {
+        throw new Error(data.error || "Unexpected response");
+      }
     } catch (err) {
       console.error("Chat error:", err);
-      setMessages((prev) => [
+      setMessages(prev => [
         ...prev,
-        { sender: "bot", text: "💀 Something went wrong, try again later." },
+        {
+          from: "bot",
+          text:
+            "⚠️ Oops! I ran into an issue connecting to my brain (backend). Try again in a bit!",
+        },
       ]);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") sendMessage();
   };
 
   return (
-    <section className="chat-section" id="chat">
-      <div className="chat-inner">
-        <h2 className="chat-title">Let’s Chat with my AI 🤖</h2>
-        <p className="chat-sub">
-          Powered by <strong>Gemini</strong> — SHA-L1K can tell you about my
-          projects, skills, or share my links.
+    <section id="chat" className="chat-section">
+      <div className="chat-container">
+        <h2 className="chat-title">Let's Chat with my AI 🤖</h2>
+        <p className="chat-subtitle">
+          Ask SHA-L1K about Shalik’s projects, skills, or connect with his work!
         </p>
 
-        <div className="chat-window">
+        <div className="chat-box">
           {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`message ${
-                msg.sender === "user" ? "user-message" : "bot-message"
-              }`}
-            >
-              {msg.text.split("\n").map((line, idx) => (
-                <div key={idx}>{line}</div>
-              ))}
+            <div key={i} className={`chat-message ${msg.from}`}>
+              <p>{msg.text}</p>
             </div>
           ))}
-          {isLoading && (
-            <div className="bot-message typing">SHA-L1K is thinking...</div>
-          )}
-          <div ref={chatEndRef} />
+          <div ref={chatEndRef}></div>
         </div>
 
         <div className="chat-input-area">
           <input
             type="text"
+            placeholder="Type your message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Type your message..."
+            onKeyDown={handleKeyPress}
+            disabled={loading}
           />
-          <button onClick={sendMessage}>Send</button>
+          <button onClick={sendMessage} disabled={loading}>
+            {loading ? "..." : "Send"}
+          </button>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Chat;

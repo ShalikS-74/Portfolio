@@ -150,6 +150,8 @@ SHA-L1K:
 });
 
 // ✅ Start Server
-app.listen(PORT, () => {
-  console.log(`✅ SHA-L1K backend running on port ${PORT}`);
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`✅ SHA-L1K backend running on port ${process.env.PORT || 5000}`);
 });
+
+export default app;
