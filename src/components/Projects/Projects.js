@@ -54,20 +54,6 @@ const Projects = () => {
               </div>
             </article>
           ))}
-
-          {/* Bored CTA card for games hub */}
-          <article className="project-card bored-card reveal" style={{ '--delay': '0.18s' }}>
-            <div className="project-body">
-              <h3>Feeling bored?</h3>
-              <p className="project-desc">Take a break — play a quick game I made. Games are hosted separately for performance.</p>
-              <div className="project-meta">
-                <div className="tech">Mini-games hub</div>
-                <div className="links">
-                  <a className="btn-demo" href="https://play.shalik.dev" target="_blank" rel="noreferrer">🎮 Play Games</a>
-                </div>
-              </div>
-            </div>
-          </article>
         </div>
       </div>
     </section>

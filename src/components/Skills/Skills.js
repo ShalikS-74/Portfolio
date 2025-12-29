@@ -3,10 +3,10 @@ import './Skills.css';
 
 // Categories and emoji placeholders (replace emoji with SVGs later if you want)
 const categories = [
-  { title: 'Languages', items: [{name:'Python', emoji:'🐍'}, {name:'C', emoji:'🔣'}, {name:'JavaScript', emoji:'🟨'}] },
-  { title: 'Frontend', items: [{name:'React', emoji:'⚛️'}] },
-  { title: 'Backend', items: [{name:'Node.js', emoji:'🟢'}, {name:'Express', emoji:'🚂'}, {name:'MongoDB', emoji:'🍃'}] },
-  { title: 'Tools', items: [{name:'VS Code', emoji:'💻'}, {name:'GitHub', emoji:'🐙'}] }
+  { title: 'Languages', items: [{name:'Python', icon:'devicon-python-plain'}, {name:'C', icon:'devicon-c-plain'}, {name:'JavaScript', icon:'devicon-javascript-plain'}] },
+  { title: 'Frontend', items: [{name:'React', icon:'devicon-react-original'}] },
+  { title: 'Backend', items: [{name:'Node.js', icon:'devicon-nodejs-plain'}, {name:'Express', icon:'devicon-express-original'}, {name:'MongoDB', icon:'devicon-mongodb-plain'}] },
+  { title: 'Tools', items: [{name:'VS Code', icon:'devicon-vscode-plain'}, {name:'GitHub', icon:'devicon-github-original'}] }
 ];
 
 const Skills = () => {
@@ -22,7 +22,7 @@ const Skills = () => {
               <div className="skill-icons">
                 {cat.items.map(item => (
                   <div key={item.name} className="skill-badge" title={item.name}>
-                    <div className="skill-emoji" aria-hidden>{item.emoji}</div>
+                    <i className={`${item.icon} skill-icon`}></i>
                     <div className="skill-name">{item.name}</div>
                   </div>
                 ))}
