@@ -21,8 +21,8 @@ const projects = [
   {
     id: 'safevision',
     title: 'SafeVision',
-    desc: 'A prototype safety detection app built using OpenCV and Flask for real-time hazard detection.',
-    tech: 'Python • OpenCV • Flask',
+    desc: 'A prototype safety detection app built using Flask for real-time hazard detection.',
+    tech: 'Python • Flask',
     code: 'https://github.com/yourusername/safevision',
     demo: '#'
   }
@@ -46,11 +46,9 @@ const Projects = () => {
                     <a className="btn-view" href={p.code} target="_blank" rel="noreferrer">
                       <span className="icon"></span> GitHub
                     </a>
-                    {p.demo && p.demo !== '#' && (
-                      <a className="btn-demo" href={p.demo} target="_blank" rel="noreferrer">
-                        <span className="icon">▶</span> Live Demo
-                      </a>
-                    )}
+                    <button className="btn-readmore">
+                      Read More
+                    </button>
                   </div>
                 </div>
               </div>

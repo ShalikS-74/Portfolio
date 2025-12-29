@@ -2,10 +2,7 @@ import React from 'react';
 import './Achievements.css';
 
 const items = [
-  'Top 15 — CodeVerse Hackathon 2024',
-  'Built SHA-L1K — AI assistant (React + Python integrations)',
-  'Designed & deployed “Red Block” (HTML5 Canvas)',
-  'Contributed to open-source mini tools and tutorials'
+  'Coming Soon'
 ];
 
 const Achievements = () => {
